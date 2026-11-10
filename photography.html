@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Photography | Allan Philip</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #0b1020;
+      color: #f3f4f8;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 24px 8%;
+      border-bottom: 1px solid #303a54;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 80px 25px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      color: #a8b1c5;
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .photo {
+      background: #151d32;
+      border: 1px solid #303a54;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo p {
+      padding: 0 18px;
+      color: #a8b1c5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: #a8b1c5;
+      border-top: 1px solid #303a54;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">AP.</div>
+    <a href="index.html">← Back to Portfolio</a>
+  </header>
+
+  <main>
+    <div class="intro">
+      <h1>Through My Lens 📸</h1>
+      <p>
+        Photography is where creativity meets curiosity.
+        This gallery is a collection of moments,
+        perspectives, and stories captured through my lens.
+      </p>
+    </div>
+
+    <div class="gallery">
+
+      <div class="photo">
+        <img src="photos/photo1.jpg"
+             alt="First photography collection"
+             loading="lazy">
+        <p>Moments in Nature</p>
+      </div>
+
+      <div class="photo">
+        <img src="photos/photo2.jpg"
+             alt="Second photography collection"
+             loading="lazy">
+        <p>Everyday Perspectives</p>
+      </div>
+
+      <div class="photo">
+        <img src="photos/photo3.jpg"
+             alt="Third photography collection"
+             loading="lazy">
+        <p>Light & Shadows</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Allan Philip | Photography Portfolio
+  </footer>
+
+</body>
+</html>
