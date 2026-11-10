@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Rock Paper Scissors | Allan Philip</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #f3f4f8;
+      text-align: center;
+    }
+
+    header {
+      padding: 24px;
+      border-bottom: 1px solid #303a54;
+      text-align: left;
+    }
+
+    header a {
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 650px;
+      margin: 55px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 48px);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #a8b1c5;
+    }
+
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 35px 0;
+    }
+
+    .score-box {
+      background: #151d32;
+      border: 1px solid #303a54;
+      border-radius: 12px;
+      padding: 18px 8px;
+    }
+
+    .score-box p {
+      color: #a8b1c5;
+      margin: 0;
+    }
+
+    .score-box h2 {
+      font-size: 32px;
+      margin: 8px 0 0;
+      color: #a78bfa;
+    }
+
+    .arena {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .player-box {
+      background: #151d32;
+      border: 1px solid #303a54;
+      border-radius: 14px;
+      padding: 25px 10px;
+    }
+
+    .emoji {
+      font-size: 65px;
+      margin: 12px 0;
+    }
+
+    #result {
+      font-size: 24px;
+      color: #a78bfa;
+      min-height: 35px;
+    }
+
+    .choices {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-4px);
+    }
+
+    button:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 3px;
+    }
+
+    .choice {
+      background: #292441;
+      color: white;
+      border: 1px solid #a78bfa;
+      padding: 18px;
+      min-width: 125px;
+      font-size: 18px;
+    }
+
+    .choice span {
+      display: block;
+      font-size: 35px;
+      margin-bottom: 8px;
+    }
+
+    .reset {
+      background: transparent;
+      color: #a78bfa;
+      border: 1px solid #a78bfa;
+      padding: 12px 25px;
+      margin-top: 35px;
+    }
+
+    footer {
+      margin-top: 55px;
+      padding: 20px;
+      color: #a8b1c5;
+      font-size: 13px;
+    }
+
+    @media (max-width: 450px) {
+      .choice {
+        min-width: 95px;
+        padding: 12px;
+        font-size: 14px;
+      }
+
+      .emoji {
+        font-size: 45px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html">← Back to Portfolio</a>
+  </header>
+
+  <main>
+
+    <p class="subtitle">ALLAN'S MINI ARCADE</p>
+
+    <h1>Rock Paper Scissors 🎮</h1>
+
+    <p class="subtitle">
+      Challenge the computer and see who wins!
+    </p>
+
+    <div class="scoreboard">
+
+      <div class="score-box">
+        <p>You</p>
+        <h2 id="playerScore">0</h2>
+      </div>
+
+      <div class="score-box">
+        <p>Computer</p>
+        <h2 id="computerScore">0</h2>
+      </div>
+
+      <div class="score-box">
+        <p>Ties</p>
+        <h2 id="tieScore">0</h2>
+      </div>
+
+    </div>
+
+    <div class="arena">
+
+      <div class="player-box">
+        <h3>Your Choice</h3>
+        <div class="emoji" id="playerChoice">❔</div>
+      </div>
+
+      <div class="player-box">
+        <h3>Computer</h3>
+        <div class="emoji" id="computerChoice">❔</div>
+      </div>
+
+    </div>
+
+    <h2 id="result" role="status" aria-live="polite">
+      Choose your move!
+    </h2>
+
+    <p class="subtitle">
+      Rock beats Scissors · Paper beats Rock ·
+      Scissors beats Paper
+    </p>
+
+    <div class="choices">
+
+      <button class="choice"
+              onclick="playGame('rock')">
+        <span>✊</span>
+        Rock
+      </button>
+
+      <button class="choice"
+              onclick="playGame('paper')">
+        <span>✋</span>
+        Paper
+      </button>
+
+      <button class="choice"
+              onclick="playGame('scissors')">
+        <span>✌️</span>
+        Scissors
+      </button>
+
+    </div>
+
+    <button class="reset" onclick="resetGame()">
+      Reset Game
+    </button>
+
+  </main>
+
+  <footer>
+    © 2026 Allan Philip | Built with HTML, CSS & JavaScript
+  </footer>
+
+  <script>
+    let playerScore = 0;
+    let computerScore = 0;
+    let tieScore = 0;
+
+    const choices = ["rock", "paper", "scissors"];
+
+    const emojis = {
+      rock: "✊",
+      paper: "✋",
+      scissors: "✌️"
+    };
+
+    function playGame(player) {
+
+      // Generate a random computer choice
+      const randomIndex =
+        Math.floor(Math.random() * choices.length);
+
+      const computer = choices[randomIndex];
+
+      // Display both choices
+      document.getElementById("playerChoice")
+        .textContent = emojis[player];
+
+      document.getElementById("computerChoice")
+        .textContent = emojis[computer];
+
+      let message = "";
+
+      // Determine the winner
+      if (player === computer) {
+        tieScore++;
+        message = "It's a tie! 🤝";
+      }
+
+      else if (
+        (player === "rock" && computer === "scissors") ||
+        (player === "paper" && computer === "rock") ||
+        (player === "scissors" && computer === "paper")
+      ) {
+        playerScore++;
+        message = "You win! 🎉";
+      }
+
+      else {
+        computerScore++;
+        message = "Computer wins! 🤖";
+      }
+
+      // Update the scoreboard
+      document.getElementById("playerScore")
+        .textContent = playerScore;
+
+      document.getElementById("computerScore")
+        .textContent = computerScore;
+
+      document.getElementById("tieScore")
+        .textContent = tieScore;
+
+      document.getElementById("result")
+        .textContent = message;
+    }
+
+    function resetGame() {
+      playerScore = 0;
+      computerScore = 0;
+      tieScore = 0;
+
+      document.getElementById("playerScore")
+        .textContent = 0;
+
+      document.getElementById("computerScore")
+        .textContent = 0;
+
+      document.getElementById("tieScore")
+        .textContent = 0;
+
+      document.getElementById("playerChoice")
+        .textContent = "❔";
+
+      document.getElementById("computerChoice")
+        .textContent = "❔";
+
+      document.getElementById("result")
+        .textContent = "Choose your move!";
+    }
+  </script>
+
+</body>
+</html>
