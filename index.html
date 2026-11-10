@@ -4,23 +4,429 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+  <meta name="description" content="Allan Philip's personal technology and software engineering portfolio.">
+  <title>Allan Philip | Portfolio</title>
+
   <style>
-    body {
-      background-color: #121826;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 100px 20px;
+    :root {
+      --bg: #0b1020;
+      --surface: #151d32;
+      --text: #f3f4f8;
+      --muted: #a8b1c5;
+      --accent: #a78bfa;
+      --border: #303a54;
     }
-    h1 { color: #a78bfa; }
-    p { font-size: 18px; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 16, 32, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 75px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .logo span,
+    .accent {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover,
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 0;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.15;
+      margin: 15px 0;
+    }
+
+    .hero h2 {
+      color: var(--muted);
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: normal;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary {
+      background: var(--accent);
+      color: #101525;
+    }
+
+    .secondary {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 750px;
+      margin-bottom: 35px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      background: #292441;
+      color: #c7b7ff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin: 5px 5px 5px 0;
+    }
+
+    .social-link {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding: 30px 15px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 15px 0;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 85px 0;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .btn, .card {
+        transition: none;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <h1>Welcome to My Portfolio!</h1>
-  <p>Hi! I'm Allan.</p>
-  <p>I'm building my personal portfolio website.</p>
-  <p>More exciting things coming soon!</p>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">AP<span>.</span></a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="eyebrow">WELCOME TO MY PORTFOLIO</div>
+
+        <h1>Hi, I'm <span class="accent">Allan Philip.</span></h1>
+
+        <h2>Software Engineering & Technology Enthusiast</h2>
+
+        <p>
+          Welcome to my personal portfolio, where I share
+          my technical projects, explore new technologies,
+          and document my journey in software development.
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="btn primary">View My Projects</a>
+          <a href="#contact" class="btn secondary">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">01. <span>About Me</span></h2>
+
+        <p class="section-description">
+          Hello! I'm Allan Philip. I'm interested in
+          software engineering, computer science, and
+          the ways technology can solve real-world problems.
+        </p>
+
+        <p class="section-description">
+          This portfolio is a space to showcase my work,
+          document what I'm learning, and highlight the
+          projects I build along the way.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">02. <span>Technical Skills</span></h2>
+
+        <p class="section-description">
+          Areas of technology I'm exploring and developing.
+          This section will be updated with my verified skills.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Programming</h3>
+            <p>Programming languages and problem-solving skills.</p>
+            <span class="tag">Coming soon</span>
+          </div>
+
+          <div class="card">
+            <h3>Web Development</h3>
+            <p>Building and designing web experiences.</p>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+
+          <div class="card">
+            <h3>Tools & Technologies</h3>
+            <p>Tools used to build, manage, and share projects.</p>
+            <span class="tag">GitHub</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">03. <span>Featured Projects</span></h2>
+
+        <p class="section-description">
+          A growing collection of my technical work.
+          More projects will be added here soon.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Personal Portfolio Website</h3>
+
+            <p>
+              A responsive personal website created
+              with HTML and CSS, hosted using GitHub Pages.
+            </p>
+
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">GitHub Pages</span>
+
+            <p>
+              <a class="social-link"
+                 href="https://github.com/allenphilip310-coder/allanphilip310-coder.github.io"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                View Source Code ↗
+              </a>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Next Project</h3>
+
+            <p>
+              This space is reserved for an upcoming
+              programming or software development project.
+            </p>
+
+            <span class="tag">Coming Soon</span>
+          </div>
+
+          <div class="card">
+            <h3>Future Project</h3>
+
+            <p>
+              More technical projects, documentation,
+              and demonstrations will appear here.
+            </p>
+
+            <span class="tag">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">04. <span>Get in Touch</span></h2>
+
+        <p class="section-description">
+          Interested in connecting or discussing technology
+          and software development? Feel free to explore
+          my work and connect with me on GitHub.
+        </p>
+
+        <a class="btn primary"
+           href="https://github.com/allenphilip310-coder"
+           target="_blank"
+           rel="noopener noreferrer">
+          Visit My GitHub
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Allan Philip. Built with HTML & CSS.</p>
+  </footer>
+
 </body>
 </html>
